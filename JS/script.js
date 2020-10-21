@@ -11,12 +11,16 @@ function Book(title, author, description,nop) {
 }
 
 function displayBooks() {
-  bookLibrary.forEach((book) => {
+  bookLibrary.forEach((book,i) => {
       const bookCard = document.createElement('div');
       const bTitle = document.createElement('h2');
       const bAuthor = document.createElement('p');
       const bNop = document.createElement('p');
       const bDesc= document.createElement('p');
+      const deleteBtn = document.createElement('button');
+      deleteBtn.innerText = "Delete"
+      deleteBtn.setAttribute("id","deleteBtn");
+      deleteBtn.setAttribute("data",i);
       bTitle.innerText = book.title;
       bAuthor.innerText = book.author;
       bNop.innerText = book.nop;
@@ -25,10 +29,12 @@ function displayBooks() {
       bookCard.appendChild(bAuthor);
       bookCard.appendChild(bNop);
       bookCard.appendChild(bDesc);
-
+        bookCard.appendChild(deleteBtn);
       document.getElementById('root').appendChild(bookCard);
   });
 }
+
+
 
 function bookForm (){
   formContainer.style.display = 'block'
