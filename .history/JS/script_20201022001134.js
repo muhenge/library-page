@@ -18,8 +18,10 @@ function displayBooks() {
 }
 
 function bookForm (){
-  formContainer = document.querySelector('.form-container');
-  formContainer.style.display = 'block'
+    const formContainer = document.createElement('div');
+    const form = document.createElement('form');
+    formContainer.appendChild(form);
+    root.appendChild(formContainer);
 }
 
 document.getElementById('add').addEventListener('click',bookForm);
