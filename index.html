@@ -13,24 +13,25 @@
     </div>
 
     <div class="form-container">
+        <p id="error"></p>
         <form class="form">
             <div class="field-container">
                 <label for="title">Book title</label>
-                <input type="text" name="title" id="title" placeholder="Enter a book title"/>
+                <input type="text" name="title" id="titleField" placeholder="Enter a book title"/>
             </div>
             <div class="field-container">
                 <label for="author">Author Name</label>
-                <input type="text" name="author" id="author" placeholder="Enter the author name"/>
+                <input type="text" name="author" id="authorField" placeholder="Enter the author name"/>
             </div>
             <div class="field-container">
-                <label for="nop">Book title</label>
-                <input type="number" name="nop" id="nop" placeholder="Enter the number of pages"/>
+                <label for="nop">Number of pages</label>
+                <input type="number" name="nop" id="nopField" placeholder="Enter the number of pages"/>
             </div>
             <div class="field-container">
                 <label for="desc">Description</label>
-                <textarea type="text" name="desc" id="desc" placeholder="Enter a book description"></textarea>
+                <textarea type="text" name="desc" id="descField" placeholder="Enter a book description"></textarea>
             </div>
-            <button type="button" id="addBook">Submit</button>
+            <button type="button" id="saveBook">Submit</button>
         </form>
     </div>
 
