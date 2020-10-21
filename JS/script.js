@@ -13,8 +13,20 @@ function Book(title, author, description,nop) {
 function displayBooks() {
   bookLibrary.forEach((book) => {
       const bookCard = document.createElement('div');
-      bookCard.innerText = book;
-      document.getElementById('root').appendChild(bookCard)
+      const bTitle = document.createElement('h2');
+      const bAuthor = document.createElement('p');
+      const bNop = document.createElement('p');
+      const bDesc= document.createElement('p');
+      bTitle.innerText = book.title;
+      bAuthor.innerText = book.author;
+      bNop.innerText = book.nop;
+      bDesc.innerText = book.description;
+      bookCard.appendChild(bTitle);
+      bookCard.appendChild(bAuthor);
+      bookCard.appendChild(bNop);
+      bookCard.appendChild(bDesc);
+
+      document.getElementById('root').appendChild(bookCard);
   });
 }
 
@@ -37,18 +49,24 @@ validated = (titleField, authorField, nopField, descField) => {
 }
 
 addBookToLibrary = event => {
-  const title = document.getElementById('titleField').value;
-  const author = document.getElementById('authorField').value;
-  const nop = document.getElementById('nopField').value;
-  const desc = document.getElementById('descField').value;
+  const title = document.getElementById('titleField');
+  const author = document.getElementById('authorField');
+  const nop = document.getElementById('nopField');
+  const desc = document.getElementById('descField');
 
-  if (!validated(title, author, nop, desc)) {
+  if (!validated(title.value, author.value, nop.value, desc.value)) {
     return;
   }
 
-  bookLibrary.push(new Book(title, author, desc, nop))
+  bookLibrary.push(new Book(title.value, author.value, desc.value, nop.value))
   formContainer.style.display = 'none'
   displayBooks();
+  title.value = '';
+  author.value = '';
+  desc.value = '';
+  nop.value = '';
+
+
 }
 
 document.getElementById('add').addEventListener('click',bookForm);
