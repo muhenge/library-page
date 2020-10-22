@@ -16,6 +16,11 @@ function Book(title, author, description,nop) {
   this.nop = nop;
 }
 
+const readStatus = (event) =>{
+   event.target.innerText = "Unread";
+
+}
+
 displayBooks = _ => {
   if (bookLibrary.length < 1) {
     while (root.firstChild) {
@@ -68,7 +73,7 @@ deleteBookFromLibrary = (event) => {
 }
 
 document.getElementById('add').addEventListener('click',bookForm);
-document.getElementById('saveBook').addEventListener('click', addBookToLibrary);
+document.getElementById('saveBook').addEventListener('click', addBookToLibrary,false);
 
 function addBookToRootNode(i, book) {
   const bookCard = document.createElement('div');
@@ -77,10 +82,14 @@ function addBookToRootNode(i, book) {
   const bNop = document.createElement('p');
   const bDesc = document.createElement('p');
   const deleteBtn = document.createElement('button');
+  const statusBtn = document.createElement('button');
+  statusBtn.setAttribute('id','statusBtn');
+  statusBtn.innerText = "Read";
   deleteBtn.innerText = "Delete";
   deleteBtn.setAttribute("id", "deleteBtn");
   deleteBtn.setAttribute("data", i);
   deleteBtn.addEventListener('click', deleteBookFromLibrary);
+  statusBtn.addEventListener('click',readStatus,false);
   bTitle.innerText = book.title;
   bAuthor.innerText = book.author;
   bNop.innerText = book.nop;
@@ -90,6 +99,7 @@ function addBookToRootNode(i, book) {
   bookCard.appendChild(bNop);
   bookCard.appendChild(bDesc);
   bookCard.appendChild(deleteBtn);
+  bookCard.appendChild(statusBtn);
   root.prepend(bookCard);
 }
 
