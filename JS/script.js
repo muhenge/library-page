@@ -9,7 +9,7 @@ const root = document.getElementById('root');
 const error = document.getElementById('error');
 const formContainer = document.querySelector('.form-container');
 
-function Book(title, author, description,nop,read = false) {
+function Book(title, author, description, nop, read = false) {
   this.title = title;
   this.author = author;
   this.description = description;
