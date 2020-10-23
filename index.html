@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>Library | Page</title>
+</head>
+<body>
+    <button type="button" id="add">Add a book</button>
+
+    <div id="root">
+    </div>
+
+    <div class="form-container">
+        <p id="error"></p>
+        <form class="form">
+            <div class="field-container">
+                <label for="title">Book title</label>
+                <input type="text" name="title" id="titleField" placeholder="Enter a book title"/>
+            </div>
+            <div class="field-container">
+                <label for="author">Author Name</label>
+                <input type="text" name="author" id="authorField" placeholder="Enter the author name"/>
+            </div>
+            <div class="field-container">
+                <label for="nop">Number of pages</label>
+                <input type="number" name="nop" id="nopField" placeholder="Enter the number of pages"/>
+            </div>
+            <div class="field-container">
+                <label for="desc">Description</label>
+                <textarea type="text" name="desc" id="descField" placeholder="Enter a book description"></textarea>
+            </div>
+            <button type="button" id="saveBook">Submit</button>
+        </form>
+    </div>
+
+    <script src="JS/script.js"></script>
+</body>
+</html>
