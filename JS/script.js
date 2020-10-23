@@ -13,7 +13,9 @@ function Book(title, author, description, nop, read = false) {
 }
 
 const readStatus = (event) => {
-  event.target.innerText = 'Unread';
+  const id = event.target.attributes[1].value;
+  bookLibrary[id].read = !bookLibrary[id].read;
+  event.target.innerText = bookLibrary[id].read ? 'unread' : 'Read';
 };
 
 const bookForm = () => {
@@ -35,7 +37,7 @@ const deleteBookFromLibrary = (event) => {
   root.removeChild(event.target.parentElement);
 };
 
-function addBookToRootNode(i, book) {
+const addBookToRootNode = (i, book) => {
   const bookCard = document.createElement('div');
   const bTitle = document.createElement('h2');
   const bAuthor = document.createElement('p');
@@ -50,7 +52,14 @@ function addBookToRootNode(i, book) {
   deleteBtn.setAttribute('data', i);
   deleteBtn.addEventListener('click', deleteBookFromLibrary);
   statusBtn.addEventListener('click', readStatus, false);
-
+  statusBtn.setAttribute('id', 'statusBtn');
+  statusBtn.setAttribute('data', i);
+  statusBtn.innerText = 'Read';
+  deleteBtn.innerText = 'Delete';
+  deleteBtn.setAttribute('id', 'deleteBtn');
+  deleteBtn.setAttribute('data', i);
+  deleteBtn.addEventListener('click', deleteBookFromLibrary);
+  statusBtn.addEventListener('click', readStatus);
   bTitle.innerText = book.title;
   bAuthor.innerText = book.author;
   bNop.innerText = book.nop;
@@ -62,7 +71,7 @@ function addBookToRootNode(i, book) {
   bookCard.appendChild(deleteBtn);
   bookCard.appendChild(statusBtn);
   root.prepend(bookCard);
-}
+};
 
 const addBookToLibrary = () => {
   const title = document.getElementById('titleField');
