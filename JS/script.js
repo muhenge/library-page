@@ -9,16 +9,16 @@ const root = document.getElementById('root');
 const error = document.getElementById('error');
 const formContainer = document.querySelector('.form-container');
 
-function Book(title, author, description,nop) {
+function Book(title, author, description,nop,read = false) {
   this.title = title;
   this.author = author;
   this.description = description;
   this.nop = nop;
+  this.read = read;
 }
 
 const readStatus = (event) =>{
    event.target.innerText = "Unread";
-
 }
 
 displayBooks = _ => {
@@ -89,7 +89,8 @@ function addBookToRootNode(i, book) {
   deleteBtn.setAttribute("id", "deleteBtn");
   deleteBtn.setAttribute("data", i);
   deleteBtn.addEventListener('click', deleteBookFromLibrary);
-  statusBtn.addEventListener('click',readStatus,false);
+  statusBtn.addEventListener('click',readStatus, false);
+
   bTitle.innerText = book.title;
   bAuthor.innerText = book.author;
   bNop.innerText = book.nop;
