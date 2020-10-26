@@ -1,11 +1,11 @@
-import { bookLibrary, getElement, validated, Book, readStatus } from "./common.js";
+import { bookLibrary, getElement, validated, Book, readStatus, books, deleteBook } from "./common.js";
 
 export const formContainer = document.querySelector('.form-container');
 
 const root = getElement('root');
 const error = getElement('error');
 
-const addBookToRootNode = (i, book) => {
+const addBookToRootNode = (docId, book) => {
   const bookCard = document.createElement('div');
   const bTitle = document.createElement('h2');
   const bAuthor = document.createElement('p');
@@ -17,15 +17,16 @@ const addBookToRootNode = (i, book) => {
   statusBtn.innerText = 'Read';
   deleteBtn.innerText = 'Delete';
   deleteBtn.setAttribute('id', 'deleteBtn');
-  deleteBtn.setAttribute('data', i);
+  deleteBtn.setAttribute('data', docId);
   deleteBtn.addEventListener('click', deleteBookFromLibrary);
   statusBtn.addEventListener('click', readStatus, false);
   statusBtn.setAttribute('id', 'statusBtn');
-  statusBtn.setAttribute('data', i);
+  statusBtn.setAttribute('data', docId);
+  statusBtn.setAttribute('data-value', book.read);
   statusBtn.innerText = 'Read';
   deleteBtn.innerText = 'Delete';
   deleteBtn.setAttribute('id', 'deleteBtn');
-  deleteBtn.setAttribute('data', i);
+  deleteBtn.setAttribute('data', docId);
   deleteBtn.addEventListener('click', deleteBookFromLibrary);
   statusBtn.addEventListener('click', readStatus);
   bTitle.innerText = book.title;
@@ -42,24 +43,23 @@ const addBookToRootNode = (i, book) => {
 };
 
 const deleteBookFromLibrary = (event) => {
-  bookLibrary.splice(event.target.attributes[1].value, 1);
-
+  deleteBook(event.target.attributes[1].value);
   root.removeChild(event.target.parentElement);
 };
 
 export const displayBooks = () => {
-  if (bookLibrary.length < 1) {
-    while (root.firstChild) {
-      root.removeChild(root.firstChild);
-    }
-  }
-
-  bookLibrary.forEach((book, i) => {
-    addBookToRootNode(i, book);
+  books
+  .orderBy("createdAt", "desc")
+  .limit(50)
+  .onSnapshot(function (querySnapshot) {
+    querySnapshot.docChanges().forEach(function (change) {
+      if (change.type === "added") {
+        addBookToRootNode(change.doc.id, change.doc.data());
+      }});
   });
-};
+}
 
-export const addBookToLibrary = () => {
+export const addBookToLibrary = (event) => {
   const title = getElement('titleField');
   const author = getElement('authorField');
   const nop = getElement('nopField');
@@ -68,15 +68,30 @@ export const addBookToLibrary = () => {
   if (!validated(title.value, author.value, nop.value, desc.value)) {
     return;
   }
-
   const newBook = new Book(title.value, author.value, desc.value, nop.value);
-  bookLibrary.push(newBook);
-  formContainer.style.display = 'none';
-  addBookToRootNode(bookLibrary.length - 1, newBook);
-  title.value = '';
-  author.value = '';
-  desc.value = '';
-  nop.value = '';
+  const addBook = books.doc();
+  event.target.setAttribute("disabled", "disabled");
+  addBook
+    .set({
+      ...newBook,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updateAt: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(
+      () => {
+        formContainer.style.display = 'none';
+        title.value = null;
+        author.value = null;
+        desc.value = null;
+        nop.value = null;
+      },
+      (err) => {
+        error.innerText = `Error on saving data ${err}`;
+      }
+    )
+    .finally(() => {
+      event.target.removeAttribute("disabled");
+    });
 };
 
 export const bookForm = () => {
@@ -84,4 +99,4 @@ export const bookForm = () => {
 };
 
 getElement('add').addEventListener('click', bookForm);
-getElement('saveBook').addEventListener('click', addBookToLibrary, false);
+getElement('saveBook').addEventListener('click', addBookToLibrary);
