@@ -4,37 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/style.css">
+    <!-- <script src="JS/common.js" type="module"></script>
+    <script src="JS/bookdom.js" type="module"></script> -->
     <title>Library | Page</title>
+    <base href=".">
+    <script src="./JS/script.js" type="module"></script>
 </head>
 <body>
     <button type="button" id="add">Add a book</button>
-
-    <div id="root">
-    </div>
 
     <div class="form-container">
         <p id="error"></p>
         <form class="form">
             <div class="field-container">
-                <label for="title">Book title</label>
+                <label for="titleField">Book title: </label>
                 <input type="text" name="title" id="titleField" placeholder="Enter a book title"/>
             </div>
             <div class="field-container">
-                <label for="author">Author Name</label>
+                <label for="authorField">Author Name: </label>
                 <input type="text" name="author" id="authorField" placeholder="Enter the author name"/>
             </div>
             <div class="field-container">
-                <label for="nop">Number of pages</label>
+                <label for="nopField">Number of pages: </label>
                 <input type="number" name="nop" id="nopField" placeholder="Enter the number of pages"/>
             </div>
             <div class="field-container">
-                <label for="desc">Description</label>
+                <label for="descField">Description: </label>
                 <textarea type="text" name="desc" id="descField" placeholder="Enter a book description"></textarea>
             </div>
             <button type="button" id="saveBook">Submit</button>
         </form>
     </div>
 
-    <script src="JS/script.js"></script>
+    <div id="root"></div>
 </body>
 </html>
