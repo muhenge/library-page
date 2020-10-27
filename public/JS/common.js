@@ -52,6 +52,5 @@ export const deleteBook = (docRef) => {
   books
     .doc(docRef)
     .delete()
-    .then(function () {
-    });
+    .then(function () {});
 };

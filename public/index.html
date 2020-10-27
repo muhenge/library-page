@@ -1,76 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href=".">
-    <link rel="stylesheet" href="../CSS/style.css" />
-    <!-- <script src="JS/common.js" type="module"></script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="." />
+  <link rel="stylesheet" href="./CSS/style.css" />
+  <!-- <script src="JS/common.js" type="module"></script>
     <script src="JS/bookdom.js" type="module"></script> -->
-    <title>Library | Page</title>
+  <title>Library | Page</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.24.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/7.24.0/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
 
-    <script defer src="/__/firebase/7.24.0/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-firestore.js"></script>
 
-    <script defer src="/__/firebase/7.24.0/firebase-analytics.js"></script>
-    <script defer src="/__/firebase/7.24.0/firebase-remote-config.js"></script>
-    <script defer src="/__/firebase/7.24.0/firebase-performance.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-    <script src="./JS/script.js" type="module"></script>
-  </head>
-  <body>
-      <div class="header">
-        <button type="button" id="add">Add a book</button>
+  <script defer src="/__/firebase/7.24.0/firebase-analytics.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-remote-config.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-performance.js"></script>
+  <script defer src="/__/firebase/init.js"></script>
+  <script src="./JS/script.js" type="module"></script>
+</head>
+
+<body>
+  <div class="header flex items-center justify-center mt-5">
+    <button class="bg-green-800 p-2 text-white rounded" type="button" id="add">Add a book</button>
+  </div>
+
+  <div class="form-container flex items-center justify-center mt-2">
+    <p id="error"></p>
+    <form class="form">
+      <div class="field-container mb-3">
+        <input class="border-b border-green-800 p-4" type="text" name="title" id="titleField" placeholder="Enter a book title" />
       </div>
-    
+      <div class="field-container mb-3">
+        <input class="border-b border-green-800 p-4" type="text" name="author" id="authorField" placeholder="Enter the author name" />
+      </div>
+      <div class="field-container mb-3">
+        <input class="border-b border-green-800 p-4" type="number" name="nop" id="nopField" placeholder="Enter the number of pages" />
+      </div>
+      <div class="field-container mb-3">
+        <textarea class="border border-green-800 p-4" type="text" name="desc" id="descField" placeholder="Enter a book description"></textarea>
+      </div>
+      <button class="bg-green-800 p-2 text-white rounded" type="button" id="saveBook">Submit</button>
+    </form>
+  </div>
 
-    <div class="form-container">
-      <p id="error"></p>
-      <form class="form">
-        <div class="field-container">
-          <label for="titleField">Book title: </label>
-          <input
-            type="text"
-            name="title"
-            id="titleField"
-            placeholder="Enter a book title"
-          />
-        </div>
-        <div class="field-container">
-          <label for="authorField">Author Name: </label>
-          <input
-            type="text"
-            name="author"
-            id="authorField"
-            placeholder="Enter the author name"
-          />
-        </div>
-        <div class="field-container">
-          <label for="nopField">Number of pages: </label>
-          <input
-            type="number"
-            name="nop"
-            id="nopField"
-            placeholder="Enter the number of pages"
-          />
-        </div>
-        <div class="field-container">
-          <label for="descField">Description: </label>
-          <textarea
-            type="text"
-            name="desc"
-            id="descField"
-            placeholder="Enter a book description"
-          ></textarea>
-        </div>
-        <button type="button" id="saveBook">Submit</button>
-      </form>
-    </div>
+  <div id="root"></div>
+</body>
 
-    <div id="root"></div>
-  </body>
 </html>
