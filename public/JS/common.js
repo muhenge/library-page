@@ -43,7 +43,7 @@ export const readStatus = (event) => {
     })
     .then(function () {
       event.target.setAttribute("data-value", read);
-      event.target.innerText = read ? "unread" : "Read";
+      event.target.innerText = read ? "Unread" : "Read";
       event.target.removeAttribute("disabled");
     });
 };

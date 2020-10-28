@@ -13,26 +13,23 @@ const addBookToRootNode = (docId, book) => {
   const bDesc = document.createElement('p');
   const deleteBtn = document.createElement('button');
   const statusBtn = document.createElement('button');
-  statusBtn.setAttribute('id', 'statusBtn');
-  statusBtn.innerText = 'Read';
-  deleteBtn.innerText = 'Delete';
-  deleteBtn.setAttribute('id', 'deleteBtn');
-  deleteBtn.setAttribute('data', docId);
-  deleteBtn.addEventListener('click', deleteBookFromLibrary);
-  statusBtn.addEventListener('click', readStatus, false);
+
+  statusBtn.innerText = book.read ? "Unread" : "Read";
+  statusBtn.addEventListener('click', readStatus);
   statusBtn.setAttribute('id', 'statusBtn');
   statusBtn.setAttribute('data', docId);
   statusBtn.setAttribute('data-value', book.read);
-  statusBtn.innerText = 'Read';
+
   deleteBtn.innerText = 'Delete';
   deleteBtn.setAttribute('id', 'deleteBtn');
   deleteBtn.setAttribute('data', docId);
   deleteBtn.addEventListener('click', deleteBookFromLibrary);
-  statusBtn.addEventListener('click', readStatus);
+
   bTitle.innerText = book.title;
   bAuthor.innerText = book.author;
   bNop.innerText = book.nop;
   bDesc.innerText = book.description;
+
   bookCard.appendChild(bTitle);
   bookCard.appendChild(bAuthor);
   bookCard.appendChild(bNop);

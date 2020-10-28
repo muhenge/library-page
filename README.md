@@ -11,6 +11,16 @@
 
 - HTML
 - JavaScript
+- Firebase
+
+## Setup and run the app
+
+> Follow these steps to setup and run the quickstart:
+  - Copy/Download this repo and open this folder in a Terminal.
+  - Install the Firebase CLI if you do not have it installed on your machine:
+  `npm -g i firebase-tools`
+  - Run a local server:
+  `firebase serve`
 
 ### Live Demo
 

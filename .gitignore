@@ -1,6 +1,5 @@
 node_modules/
 .history
 .vscode/
-firestore.rules
-storage.rules
+.firebaserc
 firebase-debug.log
