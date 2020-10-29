@@ -129,7 +129,7 @@ export const addBookToLibrary = (event) => {
 };
 
 export const bookForm = () => {
-  formContainer.style.display = 'block';
+  formContainer.style.display = 'flex';
 };
 
 getElement('add').addEventListener('click', bookForm);
