@@ -10509,6 +10509,12 @@ video {
   height: 100vh;
 }
 
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
 .text-xs {
   font-size: 0.75rem;
 }
@@ -11855,6 +11861,18 @@ video {
 
 .min-w-full {
   min-width: 100%;
+}
+
+.min-w-1\/4 {
+  min-width: 25%;
+}
+
+.min-w-1\/2 {
+  min-width: 50%;
+}
+
+.min-w-3\/4 {
+  min-width: 75%;
 }
 
 .object-contain {
@@ -31562,6 +31580,12 @@ video {
     height: 100vh;
   }
 
+  .sm\:h-max {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+  }
+
   .sm\:text-xs {
     font-size: 0.75rem;
   }
@@ -32908,6 +32932,18 @@ video {
 
   .sm\:min-w-full {
     min-width: 100%;
+  }
+
+  .sm\:min-w-1\/4 {
+    min-width: 25%;
+  }
+
+  .sm\:min-w-1\/2 {
+    min-width: 50%;
+  }
+
+  .sm\:min-w-3\/4 {
+    min-width: 75%;
   }
 
   .sm\:object-contain {
@@ -52550,6 +52586,12 @@ video {
     height: 100vh;
   }
 
+  .md\:h-max {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+  }
+
   .md\:text-xs {
     font-size: 0.75rem;
   }
@@ -53896,6 +53938,18 @@ video {
 
   .md\:min-w-full {
     min-width: 100%;
+  }
+
+  .md\:min-w-1\/4 {
+    min-width: 25%;
+  }
+
+  .md\:min-w-1\/2 {
+    min-width: 50%;
+  }
+
+  .md\:min-w-3\/4 {
+    min-width: 75%;
   }
 
   .md\:object-contain {
@@ -73538,6 +73592,12 @@ video {
     height: 100vh;
   }
 
+  .lg\:h-max {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+  }
+
   .lg\:text-xs {
     font-size: 0.75rem;
   }
@@ -74884,6 +74944,18 @@ video {
 
   .lg\:min-w-full {
     min-width: 100%;
+  }
+
+  .lg\:min-w-1\/4 {
+    min-width: 25%;
+  }
+
+  .lg\:min-w-1\/2 {
+    min-width: 50%;
+  }
+
+  .lg\:min-w-3\/4 {
+    min-width: 75%;
   }
 
   .lg\:object-contain {
@@ -94526,6 +94598,12 @@ video {
     height: 100vh;
   }
 
+  .xl\:h-max {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+  }
+
   .xl\:text-xs {
     font-size: 0.75rem;
   }
@@ -95872,6 +95950,18 @@ video {
 
   .xl\:min-w-full {
     min-width: 100%;
+  }
+
+  .xl\:min-w-1\/4 {
+    min-width: 25%;
+  }
+
+  .xl\:min-w-1\/2 {
+    min-width: 50%;
+  }
+
+  .xl\:min-w-3\/4 {
+    min-width: 75%;
   }
 
   .xl\:object-contain {

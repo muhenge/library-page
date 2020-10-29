@@ -31,9 +31,12 @@ export function Book(title, author, description, nop, read = false) {
 }
 
 export const readStatus = (event) => {
+  if (!event.target.hasAttribute('data') || !event.target.hasAttribute('data-value')) {
+    return;
+  }
   event.target.setAttribute("disabled", "disabled");
-  const id = event.target.attributes[1].value;
-  let read = !(event.target.attributes[2].value === "true");
+  const id = event.target.getAttribute('data');
+  let read = !(event.target.getAttribute('data-value') === "true");
 
   const bookReadStatus = books.doc(id);
   bookReadStatus
