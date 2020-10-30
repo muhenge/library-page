@@ -1,9 +1,17 @@
-import { bookLibrary, getElement, validated, Book, readStatus, books, deleteBook } from "./common.js";
+import {
+  getElement, validated, Book, readStatus, books, deleteBook, app, error,
+} from './common.js'; // eslint-disable-line
 
 export const formContainer = document.querySelector('.form-container');
 
 const root = getElement('root');
-const error = getElement('error');
+
+const deleteBookFromLibrary = (event) => {
+  if (event.target.hasAttribute('data')) {
+    deleteBook(event.target.getAttribute('data'));
+    root.removeChild(event.target.parentElement);
+  }
+};
 
 const addBookToRootNode = (docId, book) => {
   const bookCardWrapper = document.createElement('div');
@@ -17,7 +25,7 @@ const addBookToRootNode = (docId, book) => {
   const deleteBtn = document.createElement('button');
   const statusBtn = document.createElement('button');
 
-  statusBtn.innerText = book.read ? "Unread" : "Read";
+  statusBtn.innerText = book.read ? 'Unread' : 'Read';
   statusBtn.addEventListener('click', readStatus);
   statusBtn.setAttribute('id', 'statusBtn');
   statusBtn.setAttribute('class', `
@@ -42,7 +50,7 @@ const addBookToRootNode = (docId, book) => {
     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
   </svg>
   ${book.author}`;
-  bNop.innerText = book.nop + ' Pages';
+  bNop.innerText = `${book.nop} Pages`;
   bDesc.innerText = book.description;
 
   bookCardWrapper.setAttribute('class', 'w-full h-max min-w-1/2 lg:min-w-1/4 max-w-sm lg:max-w-full lg:flex');
@@ -51,8 +59,8 @@ const addBookToRootNode = (docId, book) => {
   lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r`);
   bookCardContent.setAttribute('class', 'mb-8');
   bAuthor.setAttribute('class', 'flex items-center text-base text-gray-600');
-  bTitle.setAttribute('class', 'mb-2 text-xl font-bold text-gray-900')
-  bDesc.setAttribute('class', 'text-base text-gray-700')
+  bTitle.setAttribute('class', 'mb-2 text-xl font-bold text-gray-900');
+  bDesc.setAttribute('class', 'text-base text-gray-700');
   bookCardActions.setAttribute('class', 'pt-4 pb-2');
   bNop.setAttribute('class', 'text-gray-600 mt-3');
 
@@ -72,27 +80,21 @@ const addBookToRootNode = (docId, book) => {
   root.prepend(bookCardWrapper);
 };
 
-const deleteBookFromLibrary = (event) => {
-  if (event.target.hasAttribute('data')) {
-    deleteBook(event.target.getAttribute('data'));
-    root.removeChild(event.target.parentElement);
-  }
-};
-
 export const displayBooks = () => {
   books
-  .orderBy("createdAt", "desc")
-  .limit(50)
-  .onSnapshot(function (querySnapshot) {
-    querySnapshot.docChanges().forEach(function (change) {
-      if (change.type === "added") {
-        addBookToRootNode(change.doc.id, change.doc.data());
-      }});
-  });
-}
+    .orderBy('createdAt', 'desc')
+    .limit(50)
+    .onSnapshot((querySnapshot) => {
+      querySnapshot.docChanges().forEach((change) => {
+        if (change.type === 'added') {
+          addBookToRootNode(change.doc.id, change.doc.data());
+        }
+      });
+    });
+};
 
 export const addBookToLibrary = (event) => {
-  event.target.setAttribute("disabled", "disabled");
+  event.target.setAttribute('disabled', 'disabled');
 
   const title = getElement('titleField');
   const author = getElement('authorField');
@@ -104,12 +106,12 @@ export const addBookToLibrary = (event) => {
   }
   const newBook = new Book(title.value, author.value, desc.value, nop.value);
   const addBook = books.doc();
-  
+
   addBook
     .set({
       ...newBook,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      updateAt: firebase.firestore.FieldValue.serverTimestamp()
+      createdAt: app.firebase.firestore.FieldValue.serverTimestamp(),
+      updateAt: app.firebase.firestore.FieldValue.serverTimestamp(),
     })
     .then(
       () => {
@@ -121,10 +123,10 @@ export const addBookToLibrary = (event) => {
       },
       (err) => {
         error.innerText = `Error on saving data ${err}`;
-      }
+      },
     )
     .finally(() => {
-      event.target.removeAttribute("disabled");
+      event.target.removeAttribute('disabled');
     });
 };
 

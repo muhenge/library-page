@@ -1,5 +1,5 @@
-import { displayBooks } from "./bookdom.js";
+import { displayBooks } from './bookdom.js'; // eslint-disable-line
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', () => {
   displayBooks();
 });
