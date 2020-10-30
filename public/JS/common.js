@@ -1,4 +1,5 @@
-export const app = firebase.app(); // eslint-disable-line
+export const fb = firebase; // eslint-disable-line
+export const app = fb.app();
 export const firestore = app.firestore();
 export const books = firestore.collection('books');
 
@@ -40,7 +41,7 @@ export const readStatus = (event) => {
   bookReadStatus
     .update({
       read,
-      updateAt: app.firebase.firestore.FieldValue.serverTimestamp(),
+      updateAt: fb.firestore.FieldValue.serverTimestamp(),
     })
     .then(() => {
       event.target.setAttribute('data-value', read);

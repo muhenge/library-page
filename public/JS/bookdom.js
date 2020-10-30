@@ -1,5 +1,5 @@
 import {
-  getElement, validated, Book, readStatus, books, deleteBook, app, error,
+  getElement, validated, Book, readStatus, books, deleteBook, fb, error,
 } from './common.js'; // eslint-disable-line
 
 export const formContainer = document.querySelector('.form-container');
@@ -110,8 +110,8 @@ export const addBookToLibrary = (event) => {
   addBook
     .set({
       ...newBook,
-      createdAt: app.firebase.firestore.FieldValue.serverTimestamp(),
-      updateAt: app.firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: fb.firestore.FieldValue.serverTimestamp(),
+      updateAt: fb.firestore.FieldValue.serverTimestamp(),
     })
     .then(
       () => {
