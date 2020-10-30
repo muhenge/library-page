@@ -3,7 +3,7 @@ export const app = fb.app();
 export const firestore = app.firestore();
 export const books = firestore.collection('books');
 
-export const getElement = (name) => document.getElementById(name);
+export const getElement = (id) => document.getElementById(id);
 
 export const error = getElement('error');
 

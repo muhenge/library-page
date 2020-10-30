@@ -8,8 +8,9 @@ const root = getElement('root');
 
 const deleteBookFromLibrary = (event) => {
   if (event.target.hasAttribute('data')) {
-    deleteBook(event.target.getAttribute('data'));
-    root.removeChild(event.target.parentElement);
+    const id = event.target.getAttribute('data');
+    deleteBook(id);
+    root.removeChild(getElement(id));
   }
 };
 
@@ -54,6 +55,7 @@ const addBookToRootNode = (docId, book) => {
   bDesc.innerText = book.description;
 
   bookCardWrapper.setAttribute('class', 'w-full h-max min-w-1/2 lg:min-w-1/4 max-w-sm lg:max-w-full lg:flex');
+  bookCardWrapper.setAttribute('id', docId);
   bookCard.setAttribute('class', `flex flex-col justify-between p-4 leading-normal
    bg-white border-b border-l border-r border-gray-400 rounded-b lg:border-l-0
   lg:border-t lg:border-gray-400 lg:rounded-b-none lg:rounded-r`);
