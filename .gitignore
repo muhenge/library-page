@@ -1,0 +1,7 @@
+node_modules/
+.history
+.vscode/
+.firebaserc
+firebase-debug.log
+.firebase
+.idea

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="." />
+  <link rel="stylesheet" href="./CSS/style.min.css" />
+  <title>Library | Page</title>
+
+  <script defer src="/__/firebase/7.24.0/firebase-app.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-firestore.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-analytics.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-remote-config.js"></script>
+  <script defer src="/__/firebase/7.24.0/firebase-performance.js"></script>
+  <script defer src="/__/firebase/init.js"></script>
+  <script src="./JS/script.js" type="module"></script>
+</head>
+
+<body>
+  <div class="flex items-center justify-start pl-6 mt-5 header">
+    <button class="p-2 text-white bg-green-800 rounded hover:bg-green-600" type="button" id="add">Add a book</button>
+  </div>
+
+  <div class="flex items-center justify-center mt-2 form-container">
+    <p id="error"></p>
+    <form class="form">
+      <div class="mb-3 field-container">
+        <input class="p-4 border-b border-green-800 outline-none" type="text" name="title" id="titleField" placeholder="Enter a book title" />
+      </div>
+      <div class="mb-3 field-container">
+        <input class="p-4 border-b border-green-800 outline-none" type="text" name="author" id="authorField" placeholder="Enter the author name" />
+      </div>
+      <div class="mb-3 field-container">
+        <input class="p-4 border-b border-green-800 outline-none" type="number" name="nop" id="nopField" placeholder="Enter the number of pages" />
+      </div>
+      <div class="mb-3 field-container">
+        <textarea class="p-4 border border-green-800 outline-none" type="text" name="desc" id="descField" placeholder="Enter a book description"></textarea>
+      </div>
+      <button class="p-2 px-5 text-white bg-green-800 rounded outline-none hover:bg-green-600" type="button" id="saveBook">Submit</button>
+    </form>
+  </div>
+
+  <div id="root" class="grid grid-cols-1 gap-2 p-5 h-max auto-rows-max justify-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></div>
+  
+</body>
+
+</html>
